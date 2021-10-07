@@ -20,7 +20,7 @@ public class Snake extends Tamagotchi {
 
     @Override
     public void burp() {
-        super.burp();
+        ////Overrides the super method to match the snake
         System.out.println("SSSSsssssssBURPssssssss");
     }
 }

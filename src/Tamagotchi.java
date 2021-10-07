@@ -24,6 +24,7 @@ public class Tamagotchi {
                 ", energy=" + energy +
                 '}';
     }
+    //Method that makes the tamagotchi burp
     public void burp() {
         System.out.println("burp");
     }

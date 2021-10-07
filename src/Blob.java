@@ -20,7 +20,7 @@ public class Blob extends Tamagotchi{
 
     @Override
     public void burp() {
-        super.burp();
+        //Overrides the super method to match the blob
         System.out.println("splush");
     }
 }

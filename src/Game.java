@@ -41,29 +41,9 @@ public class Game {
         String raceAciiArtSleep2 = null;
         String raceAciiArtEat1 = null;
         String raceAciiArtEat2 = null;
-        String aciiArtBall1 =
-                "          ___\n" +
-                "      _.-'___'-._\n" +
-                "    .'--.`   `.--'.\n" +
-                "   /.'   \\   /   `.\\\n" +
-                "  | /'-._/```\\_.-'\\ |\n" +
-                "  |/    |     |    \\|\n" +
-                "  | \\ .''-._.-''. / |\n" +
-                "   \\ |     |     | /\n" +
-                "    '.'._.-'-._.'.'\n" +
-                "      '-:_____;-'";
-        String aciiArtBall2 =
-                        "               \n" +
-                        "          ___\n" +
-                        "      _.-'___'-._\n" +
-                        "    .'--.`   `.--'.\n" +
-                        "   /.'   \\   /   `.\\\n" +
-                        "  | /'-._/```\\_.-'\\ |\n" +
-                        "  |/    |     |    \\|\n" +
-                        "  | \\ .''-._.-''. / |\n" +
-                        "   \\ |     |     | /\n" +
-                        "    '.'._.-'-._.'.'\n" +
-                        "      '-:_____;-'";
+        String aciiArtBall1 = null;
+        String aciiArtBall2 = null;
+
         if (choice == 1) {
             //If the players choice is 1 then the tamagotchi will be set to a snake and the strings will be given the value of the drawings
             tamagotchi = new Snake(nameTamagotchi(),0,moodTamagotchi(),1 + randomEnergyLv,randomNum.nextInt(1)+1);
@@ -74,23 +54,50 @@ public class Game {
                     "      /0>  \n"+
                     "_____/       ";
             aciiArtBall1 =
+                    "                               ___\n" +
+                    "                           _.-'___'-._\n" +
+                    "                         .'--.`   `.--'.\n" +
+                    "                         /.'   \\   /   `.\\\n" +
+                    "                        | /'-._/```\\_.-'\\ |\n" +
+                    "                        |/    |     |    \\|\n" +
+                    "                        | \\ .''-._.-''. / |\n" +
+                    "                         \\ |     |     | /\n" +
+                    "                          '.'._.-'-._.'.'\n" +
+                    "     _________0>            '-:_____;-'";
+            aciiArtBall2 =
+                    "                               ___\n" +
+                    "                           _.-'___'-._\n" +
+                    "                         .'--.`   `.--'.\n" +
+                    "                         /.'   \\   /   `.\\\n" +
+                    "                        | /'-._/```\\_.-'\\ |\n" +
+                    "                        |/    |     |    \\|\n" +
+                    "                        | \\ .''-._.-''. / |\n" +
+                    "                         \\ |     |     | /\n" +
+                    "                          '.'._.-'-._.'.'\n" +
+                    "     _/\\__/\\__0>           '-:_____;-'";
+            raceAciiArtSleep1 =
+                    "      Z       \n"+
+                    "       z      \n"+
+                    "        z    \n" +
+                    "_________0>    ";
+            raceAciiArtSleep2 =
+                    "       z       \n"+
+                    "        z      \n"+
+                    "_____/\\_0>    ";
+            raceAciiArtEat1 =
                     "                ┈┈┈☆☆☆☆☆☆☆┈┈┈\n" +
                     "                ┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈\n" +
                     "                ┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈\n" +
                     "                ┈╭┻━━━━━━━━━┻╮┈\n" +
                     "            /0> ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈\n" +
                     "      _____/    ┈┗━━━━━━━━━━━┛┈";
-            aciiArtBall2 =
+            raceAciiArtEat2 =
                     "                ┈┈┈☆☆☆☆☆☆☆┈┈┈\n" +
                     "                ┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈\n" +
                     "                ┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈\n" +
                     "                ┈╭┻━━━━━━━━━┻╮┈\n" +
-                    "          \\0>  ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈\n" +
-                    "      _____\\   ┈┗━━━━━━━━━━━┛┈";
-            raceAciiArtSleep1 = null;
-            raceAciiArtSleep2 = null;
-            raceAciiArtEat1 = null;
-            raceAciiArtEat2 = null;
+                    "          \\0>   ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈\n" +
+                    "      _____\\    ┈┗━━━━━━━━━━━┛┈";
 
         } else if (choice == 2) {
             //If the players choice is 2 then the tamagotchi will be set to a blob and the strings will be given the value of the drawings
@@ -255,6 +262,7 @@ public class Game {
             System.out.println(raceAciiArt1);
             setMood(tamagotchi);
             stats(tamagotchi);
+
             System.out.println("What would you like to do now?");
             displayActivities(activities);
             int activityChoice = scanner.nextInt();
@@ -330,10 +338,11 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
             clearScreen();
-            //Decreases the energy level of the tamagotchi
-            tamagotchi.energy += 1 - randomNum.nextInt(6);
+
 
         }
+        //Decreases the energy level of the tamagotchi
+        tamagotchi.energy += 0 - randomNum.nextInt(6);
     }
     public static void feed (Tamagotchi tamagotchi,String raceAciiArt2,String raceAciiArt3, String raceAciiArtEat1, String raceAciiArtEat2) {
         //A method that makes the tamagotchi eat a cake.
@@ -362,6 +371,7 @@ public class Game {
             clearScreen();
         }
         System.out.println(raceAciiArt3);
+        tamagotchi.burp();
         try {
             Thread.sleep(1 * 2000);
         } catch (InterruptedException ie) {
@@ -398,15 +408,15 @@ public class Game {
             }
             clearScreen();
             //Increases the energy level of the tamagotchi
-            tamagotchi.energy += 2 + randomNum.nextInt(7);
+
         }
 
-
+        tamagotchi.energy += 4 + randomNum.nextInt(5);
     }
 
     public static void clearScreen () {
         //A for loop that prints 15 lines. Makes it look like it clears the terminal
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
             System.out.println("");
 
         }
