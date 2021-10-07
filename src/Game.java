@@ -29,14 +29,17 @@ public class Game {
     }
 
     public static void startGame (Tamagotchi tamagotchi,int choice) {
-        int randomEnergyLv = randomNum.nextInt(9);
+        int randomEnergyLv = 6 + randomNum.nextInt(4);
         validation = false;
         String[] activities = {"play","feed","sleep"};
         String race = null;
         String raceAciiArt1 = null;
         String raceAciiArt2 = null;
+        String raceAciiArt3 = null;
         String raceAciiArtSleep1 = null;
         String raceAciiArtSleep2 = null;
+        String raceAciiArtEat1 = null;
+        String raceAciiArtEat2 = null;
         String aciiArtBall1 =
                 "          ___\n" +
                 "      _.-'___'-._\n" +
@@ -84,21 +87,21 @@ public class Game {
                     "        ░░░░░░░░░░░░░░░░░░░░░░         ";
 
             raceAciiArt2 =
-                    "                                     \\n\" +\n" +
-                    "             ░░░░░░░░░░░░            \\n\" +\n" +
-                    "         ░░░░          ░░░░░░        \\n\" +\n" +
-                    "       ░░                    ░░      \\n\" +\n" +
-                    "     ░░                      ░░░░    \\n\" +\n" +
-                    "   ░░                        ░░░░░░  \\n\" +\n" +
-                    "   ░░                  ░░    ░░░░░░  \\n\" +\n" +
-                    " ░░                    ██    ██░░░░░░\\n\" +\n" +
-                    " ░░                    ██    ██  ░░░░\\n\" +\n" +
-                    " ░░                ░░  ░░    ░░  ░░░░\\n\" +\n" +
-                    " ░░                              ░░░░\\n\" +\n" +
-                    " ░░░░░░                        ░░░░░░\\n\" +\n" +
-                    "   ░░░░░░░░░░░░░░░░░░░░░░░░  ░░░░░░  \\n\" +\n" +
-                    "   ░░░░░░░░                ░░░░░░░░  \\n\" +\n" +
-                    "                                     \\n\" +\n" +
+                    "                                      \n" +
+                    "             ░░░░░░░░░░░░             \n" +
+                    "         ░░░░          ░░░░░░         \n" +
+                    "       ░░                    ░░       \n" +
+                    "     ░░                      ░░░░    \n" +
+                    "   ░░                        ░░░░░░  \n" +
+                    "   ░░                  ░░    ░░░░░░  \n" +
+                    " ░░                    ██    ██░░░░░░\n" +
+                    " ░░                    ██    ██  ░░░░\n" +
+                    " ░░                ░░  ░░    ░░  ░░░░\n" +
+                    " ░░                              ░░░░\n" +
+                    " ░░░░░░                        ░░░░░░\n" +
+                    "   ░░░░░░░░░░░░░░░░░░░░░░░░  ░░░░░░  \n" +
+                    "   ░░░░░░░░                ░░░░░░░░  \n" +
+                    "                                     \n" +
                     "";
 
             raceAciiArtSleep1 =
@@ -162,28 +165,87 @@ public class Game {
                     "                                                             '-:_____;-'                      \n" +
                                                                                                                      "";
 
+            raceAciiArt3 =
+                    "                                                                                              \n" +
+                            "                                                                                      \n" +
+                            "              ░░░░░░░░░░                                                              \n" +
+                            "          ░░            ░░                                                            \n" +
+                            "        ░░                ░░░░                                                        \n" +
+                            "      ░░                  ░░░░░░                                                      \n" +
+                            "    ░░              ██  ░░██░░░░░░                                                    \n" +
+                            "    ░░              ████  ████░░                                                      \n" +
+                            "  ░░                  ██  ▒▒██░░░░░░                                                  \n" +
+                            "  ░░                  ██    ▓▓  ░░░░                                                  \n" +
+                            "  ░░                            ░░░░                                                  \n" +
+                            "  ░░                            ░░░░                                                  \n" +
+                            "  ░░░░                        ░░░░░░                                                  \n" +
+                            "    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░                                                    \n" +
+                            "    ░░░░░░░░              ░░░░░░░░                                                      " +
+                                                                                                                     "";
+
+            raceAciiArtEat1 =
+                            "          ░░░░░░░░░░░░                                           \n" +
+                            "      ░░░░            ░░░░                                       \n" +
+                            "                      ░░░░                                      \n" +
+                            "    ░░                    ░░░░                               \n" +
+                            "   ░░                      ░░░░░░                           \n" +
+                            "   ░░                        ░░░░                                \n" +
+                            "   ░░                        ░░░░                            \n" +
+                            "   ░░                        ░░░░                             \n" +
+                            "  ░░                        ░░░░                               \n" +
+                            "░░                        ░░░░░░░░          ┈┈┈☆☆☆☆☆☆☆┈┈┈   \n" +
+                            "░░                ▓▓    ░░██  ░░░░          ┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈     \n" +
+                            "░░              ██▓▓    ████  ░░░░          ┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈    \n" +
+                            "░░              ██░░    ██░░  ░░░░          ┈╭┻━━━━━━━━━┻╮┈    \n" +
+                            "░░░░░░      ░░              ░░░░░░          ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈       \n" +
+                            "  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░            ┈┗━━━━━━━━━━━┛┈         ";
+
+            raceAciiArtEat2 =
+                            "                                                                 \n" +
+                            "          ░░░░░░░░░░░░                                           \n" +
+                            "      ░░░░            ░░░░                                       \n" +
+                            "    ░░                    ░░░░                               \n" +
+                            "   ░░                      ░░░░░░                           \n" +
+                            "   ░░                        ░░░░                                \n" +
+                            "   ░░                        ░░░░                            \n" +
+                            "   ░░                        ░░░░                             \n" +
+                            "  ░░                        ░░░░                               \n" +
+                            "░░                ▓▓    ░░██  ░░░░                     ☆┈┈┈     \n" +
+                            "░░              ██▓▓    ████  ░░░░                     ┻╮┈┈    \n" +
+                            "░░              ██░░    ██░░  ░░░░                     ╱┃┈┈    \n" +
+                            "░░                   ░        ░░░░                   ━━━┻╮┈    \n" +
+                            "░░░░░░      ░░              ░░░░░░                  ╱╲╱╲╱┃┈      \n" +
+                            "  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░                  ━━━━━━━┛┈         ";
+
+
+
         }
         System.out.println("\nYou have now made a " + race.toLowerCase() + " that is named " + tamagotchi.name + "." );
         System.out.println(tamagotchi.name + " is " + tamagotchi.age + " years old and is " + tamagotchi.mood + ".");
         System.out.println("\nThis is " + tamagotchi.name + "\n");
-        System.out.println(tamagotchi.energy);
-        System.out.println(raceAciiArt1 + "\n");
+
 
         do {
+            System.out.println(raceAciiArt1);
+            setMood(tamagotchi);
+            stats(tamagotchi);
             System.out.println("What would you like to do now?");
             displayActivities(activities);
             int activityChoice = scanner.nextInt();
             if (activityChoice == 1) {
-                play(tamagotchi,raceAciiArt1,raceAciiArt2,aciiArtBall1,aciiArtBall2);
+                play(tamagotchi, aciiArtBall1,aciiArtBall2);
+                clearScreen();
             } else if (activityChoice == 2) {
-                feed(tamagotchi);
+                feed(tamagotchi,raceAciiArt2,raceAciiArt3,raceAciiArtEat1,raceAciiArtEat2);
+                clearScreen();
             } else if (activityChoice == 3) {
                 sleep(tamagotchi,raceAciiArtSleep1,raceAciiArtSleep2);
+                clearScreen();
             } else {
                 System.out.println("Please enter 1 to play, 2 to feed or 3 to sleep:");
 
             }
-            if (tamagotchi.energy == 0) {
+            if (tamagotchi.energy <= 0) {
                 validation = true;
 
             }
@@ -197,36 +259,84 @@ public class Game {
 
 
     }
-    public static void play (Tamagotchi tamagotchi, String raceAciiArt1, String raceAciiArt2, String aciiArtBall1, String aciiArtBall2) {
-        int randomNumber = 1;
-        if (randomNumber == 1) {
-            System.out.println(tamagotchi.name + " rolls a ball and chases after it");
+    public static Mood setMood (Tamagotchi tamagotchi) {
+        if (tamagotchi.energy < 3) {
+            tamagotchi.mood = Mood.ANGRY;
+        } else if (tamagotchi.energy < 6) {
+            tamagotchi.mood = Mood.NEUTRAL;
+        } else if (tamagotchi.energy < 9) {
+            tamagotchi.mood = Mood.HAPPY;
+        } else if (tamagotchi.energy <= 10){
+            tamagotchi.mood = Mood.ENERGETIC;
+        }
+        return tamagotchi.mood;
+    }
+
+    public static void stats (Tamagotchi tamagotchi) {
+        System.out.println("//////////////////////////////////////////////");
+        System.out.println("  Moood = " + tamagotchi.mood + " ---- Energy = " + tamagotchi.energy);
+        System.out.println("//////////////////////////////////////////////");
+    }
+    public static void play (Tamagotchi tamagotchi, String aciiArtBall1, String aciiArtBall2) {
+        System.out.println(tamagotchi.name + " rolls a ball and chases after it");
+        try {
+            Thread.sleep(1*2000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
+
+        for (int i = 0; i < 7; i++) {
+            System.out.println(aciiArtBall1);
             try {
                 Thread.sleep(1*1000);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
-
-            for (int i = 0; i < 7; i++) {
-                System.out.println(aciiArtBall1);
-                try {
-                    Thread.sleep(1*1000);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                }
-                clearScreen();
-                System.out.println(aciiArtBall2);
-                try {
-                    Thread.sleep(1*1000);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                }
-                clearScreen();
+            clearScreen();
+            System.out.println(aciiArtBall2);
+            try {
+                   Thread.sleep(1*1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
             }
+            clearScreen();
+            tamagotchi.energy += 1 - randomNum.nextInt(6);
 
         }
     }
-    public static void feed (Tamagotchi tamagotchi) {
+    public static void feed (Tamagotchi tamagotchi,String raceAciiArt2,String raceAciiArt3, String raceAciiArtEat1, String raceAciiArtEat2) {
+        System.out.println(tamagotchi.name + " eats a cake");
+        System.out.println(raceAciiArt2);
+        try {
+            Thread.sleep(1*4000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
+        for (int i = 0; i < 7; i++) {
+            System.out.println(raceAciiArtEat1);
+            try {
+                Thread.sleep(1 * 1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+            clearScreen();
+            System.out.println(raceAciiArtEat2);
+            try {
+                Thread.sleep(1 * 1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+            clearScreen();
+        }
+        System.out.println(raceAciiArt3);
+        try {
+            Thread.sleep(1 * 2000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
+        clearScreen();
+        tamagotchi.energy += 2 + randomNum.nextInt(3);
+
 
     }
     public static void sleep(Tamagotchi tamagotchi,String raceAciiArtSleep1,String raceAciiArtSleep2) {
@@ -252,6 +362,8 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
             clearScreen();
+
+            tamagotchi.energy += 2 + randomNum.nextInt(7);
         }
 
 
@@ -276,6 +388,17 @@ public class Game {
             if (playerInput == null || playerInput == "") {
                 System.out.println("\n\n\n\n\nWelcome to Tamagotchi");
                 System.out.println("\nIn this game you choose a Tamagotchi to look after, feed and play with");
+                try {
+                    Thread.sleep(1 * 6000);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("\nIf your Tamagotchi's energy goes to 0 or below then it will die and you loose the game");
+                try {
+                    Thread.sleep(1 * 6000);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
                 System.out.println("\nYou can choose between 2 Tamagotchi's");
                 System.out.println("\nPress 1 for snake or 2 for blob: ");
                 validation = true;

@@ -24,4 +24,10 @@ public class Tamagotchi {
                 ", energy=" + energy +
                 '}';
     }
+    public void burp() {
+        System.out.println("burp");
+    }
+
+
+
 }

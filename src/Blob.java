@@ -17,6 +17,12 @@ public class Blob extends Tamagotchi{
                 ", energy=" + energy +
                 '}';
     }
+
+    @Override
+    public void burp() {
+        super.burp();
+        System.out.println("splush");
+    }
 }
 
 

@@ -17,4 +17,10 @@ public class Snake extends Tamagotchi {
                 ", energy=" + energy +
                 '}';
     }
+
+    @Override
+    public void burp() {
+        super.burp();
+        System.out.println("SSSSsssssssBURPssssssss");
+    }
 }
