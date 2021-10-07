@@ -3,12 +3,13 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Game {
-
+    //Random generator, scanner and a boolean validator
     public static Random randomNum = new Random();
     public static Scanner scanner = new Scanner(System.in);
     public static boolean validation = false;
 
     public static void main(String[] args) {
+        //Needed to create a tamagotchi object and give it a value in order to process it in a method later
         Tamagotchi playerTamagotchi = null;
         System.out.println("////////////////////////////////////////////////////");
         System.out.println("                   Tamagotchi                       ");
@@ -64,10 +65,35 @@ public class Game {
                         "    '.'._.-'-._.'.'\n" +
                         "      '-:_____;-'";
         if (choice == 1) {
+            //If the players choice is 1 then the tamagotchi will be set to a snake and the strings will be given the value of the drawings
             tamagotchi = new Snake(nameTamagotchi(),0,moodTamagotchi(),1 + randomEnergyLv,randomNum.nextInt(1)+1);
             race = "Snake";
             raceAciiArt1 = "_/\\__/\\__0>";
+            raceAciiArt2 = "_________0>";
+            raceAciiArt3 =
+                    "      /0>  \n"+
+                    "_____/       ";
+            aciiArtBall1 =
+                    "                ┈┈┈☆☆☆☆☆☆☆┈┈┈\n" +
+                    "                ┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈\n" +
+                    "                ┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈\n" +
+                    "                ┈╭┻━━━━━━━━━┻╮┈\n" +
+                    "            /0> ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈\n" +
+                    "      _____/    ┈┗━━━━━━━━━━━┛┈";
+            aciiArtBall2 =
+                    "                ┈┈┈☆☆☆☆☆☆☆┈┈┈\n" +
+                    "                ┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈\n" +
+                    "                ┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈\n" +
+                    "                ┈╭┻━━━━━━━━━┻╮┈\n" +
+                    "          \\0>  ┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈\n" +
+                    "      _____\\   ┈┗━━━━━━━━━━━┛┈";
+            raceAciiArtSleep1 = null;
+            raceAciiArtSleep2 = null;
+            raceAciiArtEat1 = null;
+            raceAciiArtEat2 = null;
+
         } else if (choice == 2) {
+            //If the players choice is 2 then the tamagotchi will be set to a blob and the strings will be given the value of the drawings
             tamagotchi = new Blob(nameTamagotchi(),0,moodTamagotchi(),1 + randomEnergyLv,randomNum.nextInt(1)+1);
             race = "Blob";
             raceAciiArt1 =
@@ -232,6 +258,7 @@ public class Game {
             System.out.println("What would you like to do now?");
             displayActivities(activities);
             int activityChoice = scanner.nextInt();
+
             if (activityChoice == 1) {
                 play(tamagotchi, aciiArtBall1,aciiArtBall2);
                 clearScreen();
@@ -251,7 +278,7 @@ public class Game {
             }
         } while (!validation);
 
-
+        //If the energy level reaches 0 or below then the game ends and prints this message
         System.out.println("//////////////////////////////////////////////////////////");
         System.out.println("                    GAME OVER                             ");
         System.out.println("//////////////////////////////////////////////////////////");
@@ -260,6 +287,7 @@ public class Game {
 
     }
     public static Mood setMood (Tamagotchi tamagotchi) {
+        //Sets the mood of the tamagotchi after its level of energy
         if (tamagotchi.energy < 3) {
             tamagotchi.mood = Mood.ANGRY;
         } else if (tamagotchi.energy < 6) {
@@ -273,18 +301,20 @@ public class Game {
     }
 
     public static void stats (Tamagotchi tamagotchi) {
+        //Prints the mood and energy so the player can see how much energy is left
         System.out.println("//////////////////////////////////////////////");
         System.out.println("  Moood = " + tamagotchi.mood + " ---- Energy = " + tamagotchi.energy);
         System.out.println("//////////////////////////////////////////////");
     }
     public static void play (Tamagotchi tamagotchi, String aciiArtBall1, String aciiArtBall2) {
+        //A method that makes the tamagotchi play with a ball
         System.out.println(tamagotchi.name + " rolls a ball and chases after it");
         try {
             Thread.sleep(1*2000);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-
+        //Prints the action 7 times with delay so it looks like it is running
         for (int i = 0; i < 7; i++) {
             System.out.println(aciiArtBall1);
             try {
@@ -300,11 +330,13 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
             clearScreen();
+            //Decreases the energy level of the tamagotchi
             tamagotchi.energy += 1 - randomNum.nextInt(6);
 
         }
     }
     public static void feed (Tamagotchi tamagotchi,String raceAciiArt2,String raceAciiArt3, String raceAciiArtEat1, String raceAciiArtEat2) {
+        //A method that makes the tamagotchi eat a cake.
         System.out.println(tamagotchi.name + " eats a cake");
         System.out.println(raceAciiArt2);
         try {
@@ -312,6 +344,7 @@ public class Game {
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
+        //Prints the tamagotchi 7 times with a delay so it looks like it eats.
         for (int i = 0; i < 7; i++) {
             System.out.println(raceAciiArtEat1);
             try {
@@ -335,18 +368,20 @@ public class Game {
             Thread.currentThread().interrupt();
         }
         clearScreen();
+        //Increases the energy level of the tamagotchi
         tamagotchi.energy += 2 + randomNum.nextInt(3);
 
 
     }
     public static void sleep(Tamagotchi tamagotchi,String raceAciiArtSleep1,String raceAciiArtSleep2) {
+        //A method that makes it look like the tamagotchi is sleeping
         System.out.println(tamagotchi.name + " goes to sleep");
         try {
             Thread.sleep(1*1000);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-
+        //Prints the action 7 times with a delay
         for (int i = 0; i < 7; i++) {
             System.out.println(raceAciiArtSleep1);
             try {
@@ -362,7 +397,7 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
             clearScreen();
-
+            //Increases the energy level of the tamagotchi
             tamagotchi.energy += 2 + randomNum.nextInt(7);
         }
 
@@ -370,6 +405,7 @@ public class Game {
     }
 
     public static void clearScreen () {
+        //A for loop that prints 15 lines. Makes it look like it clears the terminal
         for (int i = 0; i < 15; i++) {
             System.out.println("");
 
@@ -377,6 +413,7 @@ public class Game {
     }
 
     public static void displayActivities (String[] activities) {
+        //Prints the activity options to the terminal
         for (int i = 0; i < activities.length; i++) {
             System.out.println((i+1) + " - " + activities[i]);
         }
@@ -384,10 +421,14 @@ public class Game {
 
 
     public static void gameInfo (String playerInput, boolean validation) {
+        //A loop that makes you choose which tamagotchi the player wants to create
         do {
+
             if (playerInput == null || playerInput == "") {
                 System.out.println("\n\n\n\n\nWelcome to Tamagotchi");
                 System.out.println("\nIn this game you choose a Tamagotchi to look after, feed and play with");
+                //A try catch function that forces the terminal to pause for the set amount of time
+                //Functioning as a sort of delay
                 try {
                     Thread.sleep(1 * 6000);
                 } catch (InterruptedException ie) {
@@ -411,6 +452,7 @@ public class Game {
 
 
     public static int choiceOfTamagotchi () {
+        //A bit of an overkill method that essentially saves the choice that the player makes in an integer
         int tamagotchiChoice = scanner.nextInt();
         int choice = 0;
         do {
@@ -434,12 +476,14 @@ public class Game {
     }
 
     public static String nameTamagotchi () {
+        //Method that takes the name the player wants to give the tamagotchi and returns it as a String
         System.out.println("What you would like your Tamagotchi to be named");
         String tamagotchiName = scanner.next();
         return tamagotchiName;
     }
 
     public static Mood moodTamagotchi () {
+        //sets the first mood for the tamagotchi when first created
         Mood tamagotchiMood = Mood.HAPPY;
         int moodNumber = randomNum.nextInt(5);
         if (moodNumber == 0) {
