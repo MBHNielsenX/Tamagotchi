@@ -1,3 +1,4 @@
+import java.util.Random;
 public enum Mood {
     HAPPY,
     SAD,
@@ -5,4 +6,6 @@ public enum Mood {
     SLEEPY,
     ENERGETIC,
     NEUTRAL
-}
+
+
+    }
