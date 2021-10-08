@@ -361,6 +361,7 @@ public class Game {
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
+            //Clears the screen
             clearScreen();
             System.out.println(raceAciiArtEat2);
             try {
